@@ -1,7 +1,5 @@
 export default {
-  // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
-  ssr: false,
-
+  mode: 'universal',
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'blogspa',
@@ -39,5 +37,9 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-  }
+  },
+
+  serverMiddleware: [
+    { path: "/api", handler: "~/api/posts.js" },
+  ],
 }

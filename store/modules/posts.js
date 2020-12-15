@@ -1,10 +1,10 @@
 import axios from 'axios';
-import {GET_POSTS_QUERY, GET_POST_QUERY} from '../graphql/queries';
+import {GET_POSTS_QUERY, GET_POST_QUERY} from '../../graphql/queries';
 import {
   UPDATE_POST_QUERY,
   ADD_COMMENT_QUERY,
   ADD_POST_QUERY
-} from '../graphql/mutations';
+} from '../../graphql/mutations';
 
 const state = {
   posts: [],
@@ -141,6 +141,11 @@ const actions = {
   updateError({commit}, error) {
     commit('setErrors', error);
   },
+  async getInitialPosts({ commit }) {
+    const { data } = await axios.get('http://localhost:3000/api/posts');
+    commit('setPosts', data);
+    commit('setSliderPosts', data);
+  },
 };
 
 const mutations = {
@@ -153,6 +158,7 @@ const mutations = {
 };
 
 export default {
+  namespaced: true,
   state,
   getters,
   actions,

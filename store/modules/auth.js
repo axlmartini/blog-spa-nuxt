@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { AUTH_USER, REGISTER_USER } from '../graphql/mutations';
+import { AUTH_USER, REGISTER_USER } from '../../graphql/mutations';
 
 const headers = {
   'Content-Type': 'application/json',
 };
 
 const state = {
-  user: JSON.parse(localStorage.getItem('userData')) || null,
+  user: null,
   showLoginForm: false,
   showRegisterForm: false,
   isLoading: false,
@@ -92,6 +92,7 @@ const mutations = {
 };
 
 export default {
+  namespaced: true,
   state,
   getters,
   actions,

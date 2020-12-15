@@ -16,7 +16,11 @@ export default {
     ...mapGetters('auth', ['user']),
   },
   beforeRouteEnter: function(to, from, next) {
-    let isLoggedIn = localStorage.getItem('userData') || false;
+    let isLoggedIn = false;
+
+    if (process.browser) {
+      isLoggedIn = localStorage.getItem('userData');
+    }
 
     next(vm => {
       if(isLoggedIn) {

@@ -23,6 +23,10 @@ export default {
     next();
   },
   middleware: ['postsList'],
+  mounted() {
+    let userData = localStorage.getItem('userData') || null;
+    this.$store.commit('auth/setUser', userData);
+  }
 }
 </script>
 
