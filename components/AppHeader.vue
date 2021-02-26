@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex';
+import {mapGetters, mapActions, mapMutations} from 'vuex';
 import Login from './forms/Login';
 import Register from './forms/Register';
 
@@ -47,8 +47,10 @@ export default {
   },
   methods: {
     ...mapActions('auth', ['updateLoginForm', 'updateRegisterForm', 'userLogout']),
+    ...mapMutations('auth', ['setErrors']),
     handleSwitchForm(switchTo) {
     if(switchTo === 'register') {
+      this.setErrors([]);
       this.updateLoginForm(false);
       setTimeout(() => {
         this.updateRegisterForm(true);
